@@ -22,6 +22,9 @@ class Node{
 
 // d1 -> data 1
 // d2 -> data 2
+// recursive way to find the LCA
+// Time complexity -> O(number of nodes)
+// space complexity -> O(auxillary stack space || number of nodes)
 Node* LCA(Node* root, Node* d1, Node* d2){
     if(root == NULL)    return NULL;
 
@@ -36,6 +39,27 @@ Node* LCA(Node* root, Node* d1, Node* d2){
     // else in any condition you must have reached to the lca node
     return root;
 }
+
+// now iterative way.
+// Time complexity -> O(number of nodes)
+// space complexity -> O(1) constant space.
+Node* LCA(Node* root, Node* d1, Node* d2){
+
+    while(root){
+    // when root data is greater than both d1 and d2
+        if(root -> data > d1->data && root -> data > d2->data)
+            root = root -> left;
+
+    // when root data is smaller than both d1 and d2
+        else if(root->data < d1->data && root->data < d2->data)
+            root = root -> right;
+
+        // else in any condition you must have reached to the lca node
+        else
+            return root;
+    }
+}
+
 
 int main()
 {
